@@ -75,7 +75,6 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package) {
    * TODO: Complete this function! Make sure you switch between lidar and radar
    * measurements.
    */
-  std::cout << meas_package.timestamp_ << std::endl;
   if (!is_initialized_) {
     if (use_laser_ && meas_package.sensor_type_ == MeasurementPackage::SensorType::LASER) {
       time_us_ = meas_package.timestamp_;
@@ -92,10 +91,6 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package) {
 
   double delta_t = (double)meas_package.timestamp_ - (double)time_us_;
   delta_t /= 1000000;
-  if (delta_t > 0.033333) {
-    delta_t = 0.033333;
-  }
-  std::cout << delta_t << std::endl;
   Prediction(delta_t);
   time_us_ = meas_package.timestamp_;
   if (use_laser_ && meas_package.sensor_type_ == MeasurementPackage::SensorType::LASER) {
