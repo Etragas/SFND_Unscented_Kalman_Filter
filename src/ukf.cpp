@@ -90,8 +90,9 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package) {
     }
   }
 
-  double delta_t = meas_package.timestamp_ - time_us_;
-  delta_t /= 1000000;
+  double delta_t = 0.033333;
+  // meas_package.timestamp_ - time_us_;
+  // delta_t /= 1000000;
   std::cout << delta_t << std::endl;
   Prediction(delta_t);
   time_us_ = meas_package.timestamp_;
