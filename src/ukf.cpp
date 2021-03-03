@@ -1,7 +1,5 @@
 #include "ukf.h"
 #include "Eigen/Dense"
-#include <iostream>
-#include <chrono>
 
 using Eigen::MatrixXd;
 using Eigen::VectorXd;
@@ -87,7 +85,7 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package) {
     }
   }
 
-  double delta_t = std::chrono::duration<double>(meas_package.timestamp_ - time_us_).count();
+  double delta_t = meas_package.timestamp_ - time_us_;
   delta_t /= 1000000;
   Prediction(delta_t);
   time_us_ = meas_package.timestamp_;
