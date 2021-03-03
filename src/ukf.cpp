@@ -23,6 +23,8 @@ UKF::UKF() {
   // initial covariance matrix
   P_ = MatrixXd(5, 5);
 
+  is_initialized_ = false;
+
   // Process noise standard deviation longitudinal acceleration in m/s^2
   std_a_ = 1;
 
@@ -73,6 +75,7 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package) {
    * TODO: Complete this function! Make sure you switch between lidar and radar
    * measurements.
    */
+  std::cout << meas_package.timestamp_ << std::endl;
   if (!is_initialized_) {
     if (use_laser_ && meas_package.sensor_type_ == MeasurementPackage::SensorType::LASER) {
       time_us_ = meas_package.timestamp_;
