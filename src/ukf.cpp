@@ -303,9 +303,9 @@ void UKF::UpdateRadar(MeasurementPackage meas_package) {
   MatrixXd K = Tc*S.inverse();
   //std::cout << "K: " << std::endl << K << std::endl;
 
-  x_ = x_ + 0.3*K*(meas_package.raw_measurements_ -z_pred);
+  x_ = x_ + 0.4*K*(meas_package.raw_measurements_ -z_pred);
   //std::cout << "X: " << std::endl << x_ << std::endl;
-  P_ = P_ - 0.3*(K * S * K.transpose());
+  P_ = P_ - 0.4*(K * S * K.transpose());
   //std::cout << "P: " << std::endl << P_ << std::endl;
   // calculate cross correlation matrix
 
